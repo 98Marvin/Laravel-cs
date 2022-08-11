@@ -40,3 +40,24 @@ Route::get('/posts/{id}', function ($id) {
 Route::get('/search', function (Request $request) {
 	return $request->name.' '.$request->city;
 });
+
+
+//View Basics and Passing Data
+Route::get('/listings', function () {
+	return view('listings', [
+		'heading' => 'Latest Listings',
+		'listings' => [
+			[
+				'id' => 1,
+				'title' => 'PHP Developer',
+				'description' => 'Build Dynamic Webistes!!'
+			],
+			[
+				'id' => 2,
+				'title' => 'Laravel Developer',
+				'description' => 'Build Powerful and Secure Webistes!!'
+			],	
+
+		]
+	]);
+});
