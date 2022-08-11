@@ -14,6 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Prefix api in the URL bar to test API routes
+
+Route::get('/posts', function () {
+	return response()->json([
+		'posts' => [
+			['title'=>'First Post', 'body'=>'1st'],
+
+			['title'=>'Second Post', 'body'=>'2nd']
+
+		]
+
+	]);
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
