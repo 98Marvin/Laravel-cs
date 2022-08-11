@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +16,27 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+// Routing and response
+Route::get('/hello', function () {
+	return response('<h2>Journey Continues Bro Lets Keep Going!!!!</h2>',
+	 200,
+	  ['Content-Type'=>'text/html', 'Foo'=>'bar']
+	);
+});
+
+Route::get('/hello2', function () {
+	return response('<em>Method 2</em>', 404)->header('Content-Type', 'text/html')->header('Foo', 'bar');
+});
+
+// Wildcards in routes with constraints
+Route::get('/posts/{id}', function ($id) {
+	// ddd($id);
+	return response('Post'. $id);
+})->where('id', '[0-5]+');
+
+// Getting Query Params From Incoming Request
+Route::get('/search', function (Request $request) {
+	return $request->name.' '.$request->city;
 });
